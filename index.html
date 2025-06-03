@@ -1,325 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Componix - PCs de Escritorio</title>
-  <style>
-    :root {
-      --color-negro: #000000;
-      --color-azul-oscuro: #0a1e3f;
-      --color-azul-acento: #3ea0ff;
-      --color-blanco: #ffffff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Componix - Venta de PCs</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+  }
+  header {
+    background: linear-gradient(90deg, #0a0f2a, #001a66);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  }
+  header h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #00aaff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  header h1 img {
+    width: 36px;
+    margin-right: 12px;
+  }
+  nav a {
+    color: #00aaff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #33caff;
+  }
+  main {
+    padding: 30px 50px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  section.pc-category {
+    margin-bottom: 50px;
+  }
+  section.pc-category h2 {
+    border-bottom: 3px solid #00aaff;
+    padding-bottom: 8px;
+    margin-bottom: 25px;
+  }
+  .pc-card {
+    background: #1c1c1c;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  }
+  .pc-card img {
+    width: 150px;
+    border-radius: 6px;
+    object-fit: contain;
+    background: #222;
+    padding: 10px;
+  }
+  .pc-info {
+    flex-grow: 1;
+  }
+  .pc-info h3 {
+    margin: 0 0 12px 0;
+    color: #00aaff;
+  }
+  .pc-info p.price {
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #33caff;
+  }
+  .pc-info button {
+    background-color: #00aaff;
+    border: none;
+    padding: 10px 18px;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .pc-info button:hover {
+    background-color: #33caff;
+  }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: var(--color-negro);
-      color: var(--color-blanco);
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: var(--color-azul-oscuro);
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--color-azul-acento);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: var(--color-blanco);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--color-azul-acento);
-    }
-
-    .banner {
-      background-color: var(--color-azul-oscuro);
-      text-align: center;
-      padding: 3rem 1rem;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--color-azul-acento);
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    h2 {
-      color: var(--color-azul-acento);
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      border-bottom: 2px solid var(--color-azul-acento);
-      padding-bottom: 0.5rem;
-    }
-
-    .productos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .producto-card {
-      background-color: #121212;
-      border-radius: 8px;
-      overflow: hidden;
-      flex: 1 1 300px;
-      display: flex;
-      flex-direction: column;
-      color: var(--color-blanco);
-      box-shadow: 0 0 10px rgba(62, 160, 255, 0.5);
-      transition: transform 0.3s;
-    }
-
-    .producto-card:hover {
-      transform: scale(1.03);
-    }
-
-    .producto-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .producto-info {
-      padding: 1rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .producto-info h3 {
-      margin: 0 0 0.5rem;
-    }
-
-    .precio {
-      font-weight: 700;
-      color: var(--color-azul-acento);
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-    }
-
-    .btn-comprar {
-      background-color: var(--color-azul-acento);
-      color: var(--color-negro);
-      padding: 0.6rem 1rem;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: 700;
-      transition: background-color 0.3s;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .btn-comprar:hover {
-      background-color: #3ea0ff;
-    }
-
-    .nosotros p {
-      font-size: 1.1rem;
-      color: #cfd8dc;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      padding: 0.6rem;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    button[type="submit"] {
-      background-color: var(--color-azul-acento);
-      border: none;
-      color: var(--color-negro);
-      padding: 0.8rem;
-      font-weight: 700;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #3ea0ff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: var(--color-azul-oscuro);
-      color: var(--color-azul-acento);
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    @media (max-width: 768px) {
-      .productos {
-        flex-direction: column;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-  </style>
+  /* Popup description */
+  .popup-description {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #222;
+    border: 2px solid #00aaff;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #00aaff;
+    max-width: 400px;
+    color: #eee;
+    z-index: 9999;
+    display: none;
+  }
+  .popup-description.active {
+    display: block;
+  }
+  .popup-description h4 {
+    margin-top: 0;
+    color: #00d0ff;
+  }
+  .popup-description button.close-btn {
+    background: #ff0055;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    font-size: 14px;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">Componix</div>
-    <nav>
-      <ul>
-        <li><a href="#gaming">Gaming</a></li>
-        <li><a href="#estudio">Estudio</a></li>
-        <li><a href="#oficina">Oficina</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="banner">
-    <h1>Potencia y rendimiento en cada PC de escritorio</h1>
+<header>
+  <h1><img src="https://cdn-icons-png.flaticon.com/512/679/679720.png" alt="Logo PC" /> Componix</h1>
+  <nav>
+    <a href="#gaming">Gaming</a>
+    <a href="#estudio">Estudio</a>
+    <a href="#oficina">Oficina</a>
+  </nav>
+</header>
+
+<main>
+
+  <section id="gaming" class="pc-category">
+    <h2>PCs Gaming</h2>
+    <p>Próximamente...</p>
   </section>
 
-  <main>
-    <!-- Sección Gaming -->
-    <section id="gaming">
-      <h2>PCs Gaming</h2>
-      <div class="productos">
-        <div class="producto-card">
-          <img src="https://images.unsplash.com/photo-1616401788460-23a2471bcaaa?auto=format&fit=crop&w=400&q=80" alt="PC Gaming 1" />
-          <div class="producto-info">
-            <h3>Gamer Xtreme 5000</h3>
-            <p>Procesador Intel i7, RTX 3060, 16GB RAM, 1TB SSD</p>
-            <div class="precio">$4.800.000 COP</div>
-            <a href="mailto:ventas@componix.com?subject=Consulta%20PC%20Gamer%20Xtreme%205000" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
-        <div class="producto-card">
-          <img src="https://images.unsplash.com/photo-1616642642879-9640d65f4fa2?auto=format&fit=crop&w=400&q=80" alt="PC Gaming 2" />
-          <div class="producto-info">
-            <h3>DragonFire 700</h3>
-            <p>AMD Ryzen 7, RTX 3070, 32GB RAM, 2TB SSD</p>
-            <div class="precio">$7.200.000 COP</div>
-            <a href="mailto:ventas@componix.com?subject=Consulta%20PC%20DragonFire%20700" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
+  <section id="estudio" class="pc-category">
+    <h2>PCs para Estudio</h2>
+
+    <div class="pc-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4144/4144441.png" alt="PC Estudio Básico" />
+      <div class="pc-info">
+        <h3>Estudio Básico</h3>
+        <p class="price">$1.500.000 COP</p>
+        <button data-description="Ideal para estudiantes que necesitan una PC básica para tareas, navegación y multimedia. Procesador Intel i3, 8GB RAM, 256GB SSD.">Consultar</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Sección Estudio -->
-    <section id="estudio">
-      <h2>PCs para Estudio</h2>
-      <div class="productos">
-        <div class="producto-card">
-          <img src="https://images.unsplash.com/photo-1596495577886-d920f1b4dba3?auto=format&fit=crop&w=400&q=80" alt="PC Estudio 1" />
-          <div class="producto-info">
-            <h3>StudyPro 300</h3>
-            <p>Intel i5, 8GB RAM, 512GB SSD</p>
-            <div class="precio">$2.200.000 COP</div>
-            <a href="mailto:ventas@componix.com?subject=Consulta%20PC%20StudyPro%20300" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
-        <div class="producto-card">
-          <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=400&q=80" alt="PC Estudio 2" />
-          <div class="producto-info">
-            <h3>FocusStation 150</h3>
-            <p>AMD Ryzen 5, 16GB RAM, 1TB HDD + 256GB SSD</p>
-            <div class="precio">$2.700.000 COP</div>
-            <a href="mailto:ventas@componix.com?subject=Consulta%20PC%20FocusStation%20150" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
+    <div class="pc-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4144/4144441.png" alt="PC Estudio Avanzado" />
+      <div class="pc-info">
+        <h3>Estudio Avanzado</h3>
+        <p class="price">$2.500.000 COP</p>
+        <button data-description="Perfecta para estudiantes avanzados y profesionales. Procesador Intel i5, 16GB RAM, 512GB SSD, gráfica integrada.">Consultar</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Sección Oficina -->
-    <section id="oficina">
-      <h2>PCs para Oficina</h2>
-      <div class="productos">
-        <div class="producto-card">
-          <img src="https://images.unsplash.com/photo-1587825140408-6b7ec8a745b3?auto=format&fit=crop&w=400&q=80" alt="PC Oficina 1" />
-          <div class="producto-info">
-            <h3>OfficeBasic 100</h3>
-            <p>Intel i3, 8GB RAM, 256GB SSD</p>
-            <div class="precio">$1.500.000 COP</div>
-            <a href="mailto:ventas@componix.com?subject=Consulta%20PC%20OfficeBasic%20100" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
-        <div class="producto-card">
-          <img src="https://images.unsplash.com/photo-1555617117-08ee57a05e1f?auto=format&fit=crop&w=400&q=80" alt="PC Oficina 2" />
-          <div class="producto-info">
-            <h3>WorkMaster 250</h3>
-            <p>Intel i5, 8GB RAM, 1TB HDD</p>
-            <div class="precio">$1.900.000 COP</div>
-            <a href="mailto:ventas@componix.com?subject=Consulta%20PC%20WorkMaster%20250" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
+  <section id="oficina" class="pc-category">
+    <h2>PCs para Oficina</h2>
+
+    <div class="pc-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4144/4144441.png" alt="PC Oficina Básica" />
+      <div class="pc-info">
+        <h3>Oficina Básica</h3>
+        <p class="price">$1.200.000 COP</p>
+        <button data-description="Ideal para tareas de oficina, correo y navegación web. Procesador Intel Pentium, 4GB RAM, 128GB SSD.">Consultar</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Sección Nosotros -->
-    <section id="nosotros">
-      <h2>Nosotros</h2>
-      <div class="nosotros">
-        <p>En Componix, nos especializamos en ofrecer PCs de escritorio de alta calidad para gaming, estudio y oficina. Nuestra misión es brindar tecnología potente y confiable adaptada a tus necesidades, con atención personalizada y precios competitivos en Colombia.</p>
+    <div class="pc-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4144/4144441.png" alt="PC Oficina Profesional" />
+      <div class="pc-info">
+        <h3>Oficina Profesional</h3>
+        <p class="price">$2.000.000 COP</p>
+        <button data-description="Para profesionales que necesitan multitarea. Procesador Intel i5, 8GB RAM, 256GB SSD.">Consultar</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Sección Contacto -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <form>
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-        <label for="email">Correo Electrónico</label>
-        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required />
-        <label for="mensaje">Mensaje</label>
-        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí..." required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
+  </section>
 
-  </main>
+</main>
+
+<!-- Popup descripción -->
+<div id="popup" class="popup-description">
+  <button class="close-btn" onclick="closePopup()">X</button>
+  <h4 id="popup-title"></h4>
+  <p id="popup-text"></p>
+</div>
+
+<script>
+  // Mostrar popup con la descripción
+  const buttons = document.querySelectorAll('.pc-info button');
+  const popup = document.getElementById('popup');
+  const popupTitle = document.getElementById('popup-title');
+  const popupText = document.getElementById('popup-text');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.pc-card');
+      const title = card.querySelector('h3').innerText;
+      const description = button.getAttribute('data-description');
+
+      popupTitle.textContent = title;
+      popupText.textContent = description;
+
+      popup.classList.add('active');
+    });
+  });
+
+  function closePopup() {
+    popup.classList.remove('active');
+  }
+</script>
+
+</body>
+</html>
 
   <footer>
     &copy; 2025 Componix. Todos los derechos reservados.
