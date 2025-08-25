@@ -28,6 +28,9 @@
       margin: 0 10px;
       text-decoration: none;
     }
+    nav a:hover {
+      color: #00bfff;
+    }
     .section {
       padding: 40px 20px;
     }
@@ -83,6 +86,21 @@
     .social-icons a:hover {
       color: #004e92;
     }
+    /* Estilos para la sección Sobre Nosotros */
+    .about-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .about-box {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+    .about-box h3 {
+      color: #00bfff;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +110,7 @@
       <a href="#gaming">Gaming</a>
       <a href="#estudio">Estudio</a>
       <a href="#oficina">Oficina</a>
-      <a href="#nosotros">Nosotros</a>
+      <a href="#nosotros">Sobre Nosotros</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
@@ -169,9 +187,27 @@
     </div>
   </section>
 
+  <!-- Nueva sección Sobre Nosotros -->
   <section class="section" id="nosotros">
     <h2>Sobre Nosotros</h2>
-    <p>En Componix nos dedicamos a armar y vender computadores de escritorio de alto rendimiento para todas las necesidades. Somos expertos en tecnología y asesoramos a nuestros clientes para que encuentren el equipo ideal.</p>
+    <div class="about-container">
+      <div class="about-box">
+        <h3>Quiénes Somos</h3>
+        <p>En Componix nos dedicamos a armar y vender computadores de escritorio de alto rendimiento para todas las necesidades. 
+        Somos expertos en tecnología y asesoramos a nuestros clientes para que encuentren el equipo ideal.</p>
+      </div>
+      <div class="about-box">
+        <h3>Misión</h3>
+        <p>Brindar acceso a soluciones tecnológicas personalizadas a través de la venta de computadores de escritorio armados a medida, 
+        ofreciendo equipos de alto rendimiento, precios accesibles y atención personalizada, 
+        con el objetivo de mejorar la experiencia digital de nuestros clientes y contribuir al desarrollo tecnológico de nuestra comunidad.</p>
+      </div>
+      <div class="about-box">
+        <h3>Visión</h3>
+        <p>Ser reconocidos en el año 2030 como la empresa líder en el mercado local de computadores personalizados, destacándonos por nuestra calidad, innovación y compromiso con la satisfacción del cliente, 
+        expandiendo nuestra cobertura y fortaleciendo nuestra identidad como marca confiable y especializada.</p>
+      </div>
+    </div>
   </section>
 
   <div class="divider"></div>
@@ -200,3 +236,4 @@
   </script>
 </body>
 </html>
+
