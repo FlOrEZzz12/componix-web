@@ -4,102 +4,412 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Componix - Venta de PCs</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0a0a0a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
       color: white;
+      line-height: 1.6;
     }
+    
     header {
-      background: linear-gradient(to right, #000428, #004e92);
-      padding: 20px;
+      background: linear-gradient(45deg, #000428, #004e92, #00bfff);
+      background-size: 300% 300%;
+      animation: gradientShift 8s ease infinite;
+      padding: 25px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0, 191, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
     }
+    
+    @keyframes glow {
+      from { text-shadow: 0 0 20px rgba(0, 191, 255, 0.5); }
+      to { text-shadow: 0 0 30px rgba(0, 191, 255, 0.8), 0 0 40px rgba(0, 191, 255, 0.3); }
+    }
+    
     nav a {
       color: white;
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 10px 15px;
+      border-radius: 25px;
+      position: relative;
+      overflow: hidden;
     }
+    
     nav a:hover {
       color: #00bfff;
+      background: rgba(0, 191, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
     }
+    
     .section {
-      padding: 40px 20px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
+    
+    .section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #00bfff;
+      text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+    }
+    
     .product {
-      background: #111;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
       display: flex;
-      gap: 20px;
+      gap: 30px;
       align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 191, 255, 0.2);
+      position: relative;
+      overflow: hidden;
     }
+    
+    .product::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .product:hover::before {
+      left: 100%;
+    }
+    
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 191, 255, 0.2);
+      border-color: rgba(0, 191, 255, 0.5);
+    }
+    
     .product img {
-      width: 200px;
-      border-radius: 10px;
+      width: 280px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
+    
+    .product:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 191, 255, 0.3);
+    }
+    
     .product-details {
       flex: 1;
     }
+    
+    .product-details h3 {
+      font-size: 1.8rem;
+      color: #00bfff;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+    }
+    
+    .product-details p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+    
+    .product-details p strong {
+      color: #00ff88;
+      font-size: 1.3rem;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    
     button {
-      background: #004e92;
+      background: linear-gradient(45deg, #004e92, #00bfff);
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 15px 30px;
+      border-radius: 30px;
       cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 78, 146, 0.3);
+      position: relative;
+      overflow: hidden;
     }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 191, 255, 0.4);
+      background: linear-gradient(45deg, #00bfff, #004e92);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
     .description {
       display: none;
-      margin-top: 10px;
+      margin-top: 20px;
       color: #ccc;
+      padding: 20px;
+      background: rgba(0, 191, 255, 0.1);
+      border-radius: 10px;
+      border-left: 4px solid #00bfff;
+      animation: slideDown 0.3s ease;
     }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     .divider {
       height: 4px;
-      background: #004e92;
-      margin: 40px 0;
+      background: linear-gradient(90deg, #004e92, #00bfff, #004e92);
+      margin: 60px auto;
+      max-width: 800px;
+      border-radius: 2px;
+      animation: pulse 2s ease-in-out infinite;
     }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    
     footer {
-      background: #000;
+      background: linear-gradient(45deg, #000, #1a1a2e);
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+      padding: 40px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(0, 191, 255, 0.3);
     }
+    
     .social-icons {
-      margin-top: 20px;
+      margin-top: 30px;
     }
+    
     .social-icons a {
-      margin: 0 10px;
+      margin: 0 15px;
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 15px;
+      background: rgba(0, 191, 255, 0.1);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      line-height: 30px;
+      border: 2px solid rgba(0, 191, 255, 0.3);
     }
+    
     .social-icons a:hover {
-      color: #004e92;
+      color: #00bfff;
+      transform: translateY(-5px) scale(1.2);
+      background: rgba(0, 191, 255, 0.2);
+      border-color: #00bfff;
+      box-shadow: 0 10px 25px rgba(0, 191, 255, 0.3);
     }
-    /* Estilos para la sección Sobre Nosotros */
+    
+    /* Custom social icons */
+    .icon-email::before { content: "✉"; }
+    .icon-phone::before { content: "📞"; }
+    
+    /* Facebook Icon */
+    .icon-facebook {
+      position: relative;
+      background: #1877f2 !important;
+      border-color: #1877f2 !important;
+    }
+    .icon-facebook::before {
+      content: "f";
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-style: italic;
+    }
+    .icon-facebook:hover {
+      background: #166fe5 !important;
+      color: white !important;
+    }
+    
+    /* Instagram Icon */
+    .icon-instagram {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important;
+      border: none !important;
+    }
+    .icon-instagram::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      border: 2px solid white;
+      border-radius: 6px;
+      display: inline-block;
+      position: relative;
+    }
+    .icon-instagram::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .icon-instagram:hover {
+      transform: translateY(-5px) scale(1.2);
+      color: white !important;
+    }
+    
+    /* TikTok Icon */
+    .icon-tiktok {
+      background: #000000 !important;
+      border-color: #ff0050 !important;
+      position: relative;
+    }
+    .icon-tiktok::before {
+      content: "";
+      width: 12px;
+      height: 16px;
+      background: #ff0050;
+      border-radius: 3px;
+      display: inline-block;
+      position: relative;
+      box-shadow: 4px -4px 0 #25f4ee;
+    }
+    .icon-tiktok::after {
+      content: "♪";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 16px;
+    }
+    .icon-tiktok:hover {
+      background: #ff0050 !important;
+      color: white !important;
+    }
+    
     .about-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
     }
+    
     .about-box {
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 191, 255, 0.2);
+      transition: all 0.3s ease;
     }
+    
+    .about-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 191, 255, 0.2);
+      border-color: rgba(0, 191, 255, 0.5);
+    }
+    
     .about-box h3 {
       color: #00bfff;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      
+      nav a {
+        margin: 0 8px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      
+      .product {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .product img {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .section h2 {
+        font-size: 2rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    /* Scroll animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .product {
+      animation: fadeInUp 0.6s ease forwards;
     }
   </style>
 </head>
@@ -118,23 +428,23 @@
   <section class="section" id="gaming">
     <h2>PCs para Gaming</h2>
     <div class="product">
-      <img src="https://images.pexels.com/photos/845451/pexels-photo-845451.jpeg" alt="PC Gaming 1" />
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAEsASwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACii
       <div class="product-details">
-        <h3>Gamer Xtreme</h3>
-        <p>Core i7, RTX 3060, 16GB RAM, 1TB SSD</p>
+        <h3>Gamer Xtreme RGB</h3>
+        <p>Core i7-12700KF, RTX 4060 Ti, 16GB DDR4, 1TB NVMe SSD</p>
         <p><strong>$4.500.000 COP</strong></p>
         <button onclick="toggleDesc(this)">Consultar</button>
-        <p class="description">Ideal para juegos AAA, excelente rendimiento gráfico, gabinete RGB y refrigeración líquida.</p>
+        <p class="description">Configuración ideal para juegos AAA en alta resolución. Incluye iluminación RGB personalizable, refrigeración líquida y gabinete con panel lateral de vidrio templado. Perfecto para gaming y streaming simultáneo.</p>
       </div>
     </div>
     <div class="product">
-      <img src="https://images.pexels.com/photos/6131178/pexels-photo-6131178.jpeg" alt="PC Gaming 2" />
+      <img src="https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=500" alt="PC Gaming Pro" />
       <div class="product-details">
-        <h3>Gamer Shadow</h3>
-        <p>Ryzen 7, RX 6700 XT, 32GB RAM, 2TB HDD + 512GB SSD</p>
+        <h3>Gamer Shadow Pro</h3>
+        <p>Ryzen 7 5800X, RX 6700 XT, 32GB DDR4, 2TB HDD + 1TB SSD</p>
         <p><strong>$5.200.000 COP</strong></p>
         <button onclick="toggleDesc(this)">Consultar</button>
-        <p class="description">Potente para streaming y edición, luces RGB, torre con panel lateral de vidrio templado.</p>
+        <p class="description">Bestia para gaming competitivo y creación de contenido. Sistema de refrigeración avanzado, múltiples ventiladores RGB y diseño futurista. Preparado para realidad virtual y 4K gaming.</p>
       </div>
     </div>
   </section>
@@ -142,23 +452,23 @@
   <section class="section" id="estudio">
     <h2>PCs para Estudio</h2>
     <div class="product">
-      <img src="https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg" alt="PC Estudio 1" />
+      <img src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="PC Estudio con Periféricos" />
       <div class="product-details">
-        <h3>Study Pro</h3>
-        <p>Ryzen 5, 8GB RAM, 512GB SSD</p>
+        <h3>Study Pro Max</h3>
+        <p>Ryzen 5 5600G, 16GB DDR4, 512GB NVMe SSD</p>
         <p><strong>$2.100.000 COP</strong></p>
         <button onclick="toggleDesc(this)">Consultar</button>
-        <p class="description">Perfecta para tareas escolares, videollamadas y ofimática. Compacta y silenciosa.</p>
+        <p class="description">Diseñado para estudiantes universitarios y profesionales. Excelente para programación, diseño gráfico básico, videollamadas HD y multitarea intensiva. Incluye conectividad WiFi 6 y Bluetooth 5.0.</p>
       </div>
     </div>
     <div class="product">
-      <img src="https://images.pexels.com/photos/1181327/pexels-photo-1181327.jpeg" alt="PC Estudio 2" />
+      <img src="https://images.pexels.com/photos/159275/macro-focus-cogwheel-gear-159275.jpeg?auto=compress&cs=tinysrgb&w=500" alt="PC Estudio Compacto" />
       <div class="product-details">
-        <h3>Study Lite</h3>
-        <p>Intel Pentium Gold, 4GB RAM, 256GB SSD</p>
+        <h3>Study Lite Compact</h3>
+        <p>Intel Core i3-12100, 8GB DDR4, 256GB SSD</p>
         <p><strong>$1.400.000 COP</strong></p>
         <button onclick="toggleDesc(this)">Consultar</button>
-        <p class="description">Básica y económica, ideal para estudiantes de primaria y secundaria.</p>
+        <p class="description">Perfecta para estudiantes de colegio y tareas básicas. Diseño compacto y silencioso, ideal para espacios reducidos. Incluye suite de Office y software educativo preinstalado.</p>
       </div>
     </div>
   </section>
@@ -166,35 +476,34 @@
   <section class="section" id="oficina">
     <h2>PCs para Oficina</h2>
     <div class="product">
-      <img src="https://images.pexels.com/photos/245032/pexels-photo-245032.jpeg" alt="PC Oficina 1" />
+      <img src="https://images.pexels.com/photos/574070/pexels-photo-574070.jpeg?auto=compress&cs=tinysrgb&w=500" alt="PC Oficina Profesional" />
       <div class="product-details">
-        <h3>OfiMax</h3>
-        <p>Core i3, 8GB RAM, 256GB SSD</p>
+        <h3>OfiMax Business</h3>
+        <p>Core i5-12400, 16GB DDR4, 512GB SSD</p>
         <p><strong>$1.500.000 COP</strong></p>
         <button onclick="toggleDesc(this)">Consultar</button>
-        <p class="description">Diseñada para oficinas modernas, eficiente, rápida y confiable.</p>
+        <p class="description">Solución empresarial completa con Windows 11 Pro. Optimizada para aplicaciones de oficina, videoconferencias profesionales y gestión de bases de datos. Incluye garantía extendida empresarial.</p>
       </div>
     </div>
     <div class="product">
-      <img src="https://images.pexels.com/photos/218863/pexels-photo-218863.jpeg" alt="PC Oficina 2" />
+      <img src="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=500" alt="PC Oficina Compacta" />
       <div class="product-details">
-        <h3>Office Plus</h3>
-        <p>Ryzen 3, 8GB RAM, 500GB HDD</p>
+        <h3>Office Plus Executive</h3>
+        <p>Ryzen 5 PRO 4650G, 16GB DDR4, 1TB SSD</p>
         <p><strong>$1.600.000 COP</strong></p>
         <button onclick="toggleDesc(this)">Consultar</button>
-        <p class="description">Ideal para tareas administrativas, navegación web y software de oficina.</p>
+        <p class="description">Estación de trabajo premium para ejecutivos y gerentes. Procesamiento rápido para múltiples aplicaciones, seguridad empresarial avanzada y diseño elegante para oficinas modernas.</p>
       </div>
     </div>
   </section>
 
-  <!-- Nueva sección Sobre Nosotros -->
   <section class="section" id="nosotros">
     <h2>Sobre Nosotros</h2>
     <div class="about-container">
       <div class="about-box">
         <h3>Quiénes Somos</h3>
         <p>En Componix nos dedicamos a armar y vender computadores de escritorio de alto rendimiento para todas las necesidades. 
-        Somos expertos en tecnología y asesoramos a nuestros clientes para que encuentren el equipo ideal.</p>
+        Somos expertos en tecnología con más de 10 años de experiencia y asesoramos a nuestros clientes para que encuentren el equipo ideal que transformará su experiencia digital.</p>
       </div>
       <div class="about-box">
         <h3>Misión</h3>
@@ -205,7 +514,7 @@
       <div class="about-box">
         <h3>Visión</h3>
         <p>Ser reconocidos en el año 2030 como la empresa líder en el mercado local de computadores personalizados, destacándonos por nuestra calidad, innovación y compromiso con la satisfacción del cliente, 
-        expandiendo nuestra cobertura y fortaleciendo nuestra identidad como marca confiable y especializada.</p>
+        expandiendo nuestra cobertura y fortaleciendo nuestra identidad como marca confiable y especializada en soluciones tecnológicas avanzadas.</p>
       </div>
     </div>
   </section>
@@ -214,18 +523,21 @@
 
   <section class="section" id="contacto">
     <h2>Contacto</h2>
-    <p>Correo: componix@empresa.com</p>
-    <p>Teléfono: +57 301 123 4567</p>
-    <div class="social-icons">
-      <p>Síguenos en nuestras redes:</p>
-      <a href="https://www.facebook.com/profile.php?id=61577228660505" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/compo.nix_ig/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.tiktok.com/@componix.tok?_t=ZS-8wtt43n2JuL&_r=1" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <div style="text-align: center; font-size: 1.2rem;">
+      <p><span class="icon-email">✉</span> componix@empresa.com</p>
+      <p><span class="icon-phone">📞</span> +57 301 123 4567</p>
+      <div class="social-icons">
+        <p style="margin-bottom: 30px;">Síguenos en nuestras redes:</p>
+        <a href="https://www.facebook.com/profile.php?id=61577228660505" target="_blank" title="Facebook" class="icon-facebook"></a>
+        <a href="https://www.instagram.com/compo.nix_ig/" target="_blank" title="Instagram" class="icon-instagram"></a>
+        <a href="https://www.tiktok.com/@componix.tok?_t=ZS-8wtt43n2JuL&_r=1" target="_blank" title="TikTok" class="icon-tiktok"></a>
+      </div>
     </div>
   </section>
 
   <footer>
     <p>&copy; 2025 Componix. Todos los derechos reservados.</p>
+    <p style="margin-top: 10px; opacity: 0.7;">Construyendo el futuro, una PC a la vez</p>
   </footer>
 
   <script>
@@ -233,7 +545,29 @@
       const desc = button.nextElementSibling;
       desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
     }
+    
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
+    
+    // Add some interactive effects
+    document.querySelectorAll('.product').forEach(product => {
+      product.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      product.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
   </script>
 </body>
 </html>
-
